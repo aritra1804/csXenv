@@ -1,0 +1,4 @@
+#ReadMe
+
+added until detecting specific object and make robot to move to that position. QR code detector is yet to implement, but it's easy to go from now.
+Also, considering speed and angle of gretchen, I think we should change to just compare with information from QR code.
