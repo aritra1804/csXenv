@@ -267,7 +267,10 @@ def main():
                         "[ ({:3d}/{:3d}) - ({:3d}/{:3d}): Pobj: {:.3f}, Pclass: {:.3f} -> Ptotal: {:.3f}, class: {:s} ]"
                         .format(x, y, x + dx, y + dy, anchorbox[4], anchorbox[class_id + 5], confidence,
                                 classes[class_id]))
-
+                    print(
+                        "[CENTER ({:3d}/{:3d})]"
+                        .format(cx, cy, x + dx, y + dy, anchorbox[4], anchorbox[class_id + 5], confidence,
+                                classes[class_id]))
                     # only consider prediction if total confidence is above threshold
                     if confidence >= conf_threshold:
                         class_ids.append(class_id)
@@ -307,6 +310,16 @@ def main():
         cv2.imshow("Preview", preview[..., ::-1])  # swap RGB -> BGR
         cv2.imshow("ObjectDetection", input_image[..., ::-1])  # idem
         # key = cv2.waitKey()
+
+        def bounding_box_img(img, bbox):
+            x_min, y_min, x_max, y_max = bbox
+            bbox_obj = img[y_min:y_max, x_min:x_max]
+            return bbox_obj
+
+            img = cv2.imread("image.jpg")
+            cropped_img = bounding_box_img(img, bbox)
+            cv2.imshow(cropped_img)
+
 
         if key > 0:
             break
